@@ -1,0 +1,10 @@
+ECHO is on.
+venv/ 
+*.pyc 
+__pycache__/ 
+.env 
+.DS_Store 
+chroma_db/ 
+*.log 
+data/raw/* 
+models/*.pkl 
