@@ -1,26 +1,27 @@
-# Core dependencies
-openai==1.3.0
+# Core - NO OpenAI needed!
 python-dotenv==1.0.0
 
 # Data processing
 pandas==2.1.0
 numpy==1.23.5
 
-# Vector database
+# FREE Vector database
 chromadb==0.4.18
 
-# NLP & ML
+# FREE NLP & ML Models
+transformers==4.35.0
+torch==2.1.0
 sentence-transformers==2.2.2
 nltk==3.8.1
 scikit-learn==1.3.0
 
-# Google Sheets integration
+# Google Sheets integration (FREE)
 gspread==5.12.0
 google-auth==2.23.0
 google-auth-oauthlib==1.1.0
 google-auth-httplib2==0.1.1
 
-# Slack integration
+# Slack integration (FREE tier)
 slack-sdk==3.23.0
 
 # API & Web
