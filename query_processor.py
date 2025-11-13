@@ -41,7 +41,7 @@ class QueryProcessor:
         return ' '.join(tokens)
 
 
-# ✅ Example (run this to test)
+#  Example (run this to test)
 if __name__ == "__main__":
     qp = QueryProcessor()
     sample = "How can I RESET my password quickly?"
