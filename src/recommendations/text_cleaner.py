@@ -1,14 +1,14 @@
+# text_cleaner.py
 import re
 
-def clean_text(text):
+def clean_text(text: str) -> str:
     """
-    Simple text cleaning function:
-    - Lowercase
-    - Remove special characters
-    - Remove extra spaces
+    Clean the input text by:
+    - Lowercasing
+    - Removing special characters
+    - Stripping extra spaces
     """
     text = text.lower()
-    text = re.sub(r'[^\w\s]', '', text)  # remove punctuation
-    text = re.sub(r'\s+', ' ', text)     # remove extra spaces
+    text = re.sub(r'[^\w\s]', '', text)
+    text = re.sub(r'\s+', ' ', text)
     return text.strip()
-
