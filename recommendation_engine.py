@@ -1,7 +1,7 @@
 # src/recommendations/recommendation_engine.py
 """
 Recommendation Engine Module
-----------------------------
+
 This module searches the knowledge base using semantic similarity
 and returns the top relevant answers for a given customer query.
 """
@@ -44,7 +44,7 @@ class RecommendationEngine:
         return results[['title', 'content', 'similarity']]
 
 
-# ✅ Example (run this to test)
+#  Example (run this to test)
 if __name__ == "__main__":
     from src.recommendations.query_processor import QueryProcessor
 
