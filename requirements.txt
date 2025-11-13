@@ -1,42 +1,45 @@
-# Core - NO OpenAI needed!
+# === Core Dependencies ===
 python-dotenv==1.0.0
-
-# Data processing
-pandas==2.1.0
 numpy==1.23.5
 
-# FREE Vector database
-chromadb==0.4.18
+# === PDF Processing ===
+PyPDF2==3.0.1
+pdfplumber==0.10.3
+pymupdf==1.23.8
+pytesseract==0.3.10
+Pillow==10.1.0
+langchain==0.1.0
+langchain-text-splitters==0.0.1
 
-# FREE NLP & ML Models
+# === Vector Database & Embeddings ===
+chromadb==0.4.18
+sentence-transformers==2.2.2
 transformers==4.35.0
 torch==2.1.0
-sentence-transformers==2.2.2
+
+# === NLP & Machine Learning ===
 nltk==3.8.1
 scikit-learn==1.3.0
 
-# Google Sheets integration (FREE)
-gspread==5.12.0
-google-auth==2.23.0
-google-auth-oauthlib==1.1.0
-google-auth-httplib2==0.1.1
+# === Data Processing ===
+pandas==2.1.0
 
-# Slack integration (FREE tier)
-slack-sdk==3.23.0
-
-# API & Web
+# === API & Web Framework ===
 fastapi==0.104.0
 uvicorn==0.24.0
 requests==2.31.0
 
-# Visualization
+# === Visualization ===
 matplotlib==3.8.0
 seaborn==0.13.0
 plotly==5.17.0
 
-# Testing
+# === Testing ===
 pytest==7.4.0
 pytest-asyncio==0.21.0
 
-# Utilities
+# === Utilities ===
 tqdm==4.66.0
+
+# === requirements_ui ===
+streamlit==1.28.0
