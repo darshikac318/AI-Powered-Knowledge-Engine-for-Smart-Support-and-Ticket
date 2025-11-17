@@ -8,24 +8,40 @@ class QueryProcessor:
             'replacement': ['replace', 'exchange', 'swap'],
             'damaged': ['damaged', 'broken', 'defective']
         }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> cbc81c9cf4a0e207fdcc3fec1ef612c4bdff58d4
     def clean_query(self, query: str) -> str:
         query = query.lower().strip()
         query = re.sub(r'[^\w\s]', '', query)
         query = re.sub(r'\s+', ' ', query)
         return query
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> cbc81c9cf4a0e207fdcc3fec1ef612c4bdff58d4
     def detect_intent(self, query: str) -> str:
         query_lower = query.lower()
         for intent, keywords in self.intent_keywords.items():
             if any(keyword in query_lower for keyword in keywords):
                 return intent
         return 'general'
+<<<<<<< HEAD
     
     def process_query(self, raw_query: str):
         cleaned = self.clean_query(raw_query)
         intent = self.detect_intent(cleaned)
         
+=======
+
+    def process_query(self, raw_query: str):
+        cleaned = self.clean_query(raw_query)
+        intent = self.detect_intent(cleaned)
+
+>>>>>>> cbc81c9cf4a0e207fdcc3fec1ef612c4bdff58d4
         return {
             'original': raw_query,
             'cleaned': cleaned,
