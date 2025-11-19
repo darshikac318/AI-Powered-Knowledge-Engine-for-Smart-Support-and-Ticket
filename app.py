@@ -553,7 +553,7 @@ def manager_interface():
                         st.markdown("**Agent's Improvement Suggestions:**")
                         st.warning(feedback['kb_feedback'])
                     else:
-                        st.info("No KB feedback received yet")
+                        st.info("No KB feedback received yet. Feedback will appear here after agents resolve tickets.")
 
 if not st.session_state.logged_in:
     login_page()
