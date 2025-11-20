@@ -1,0 +1,55 @@
+Amazon Knowledge Support System - Setup Instructions
+====================================================
+
+STEP 1: Install Python
+-----------------------
+1. Download Python 3.10 or higher from python.org
+2. During installation, check "Add Python to PATH"
+3. Verify: Open Command Prompt and type: python --version
+
+STEP 2: Install Dependencies
+-----------------------------
+1. Open Command Prompt in project folder
+2. Create virtual environment:
+   python -m venv venv
+
+3. Activate virtual environment:
+   Windows: venv\Scripts\activate
+   Mac/Linux: source venv/bin/activate
+
+4. Install packages:
+   pip install -r requirements.txt
+
+STEP 3: Build Knowledge Base
+-----------------------------
+1. Place 13 PDF files in: data/raw/
+2. Run: python load_knowledge_base.py
+3. Wait for completion (2-3 minutes)
+4. Verify: "Total chunks: 41" message appears
+
+STEP 4: Run Application
+------------------------
+1. Double-click: run_system.bat (Windows)
+   OR
+   Run: streamlit run app.py
+
+2. Browser opens automatically at: http://localhost:8501
+
+3. Login with demo credentials:
+   Customer: user1 / user123
+   Agent: agent1 / agent123
+   Manager: manager1 / manager123
+
+TROUBLESHOOTING
+---------------
+- If port 8501 busy: streamlit run app.py --server.port=8502
+- If modules missing: pip install -r requirements.txt
+- If KB not found: python load_knowledge_base.py
+- If database error: Delete data/support_system.db and restart
+
+SUPPORT
+-------
+For assistance, contact development team.
+
+Version: 1.0
+Last Updated: November 2025
