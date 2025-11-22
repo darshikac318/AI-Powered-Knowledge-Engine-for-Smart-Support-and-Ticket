@@ -261,7 +261,7 @@ Team Members:
 - **Taruni**: Data Engineering & Backup Systems
 - **Nandani**: AI/ML & Recommendation Engine
 - **Nimisha**: Analytics & Reporting
-- **Drshika**: Integration & Infrastructure
+- **Darshika**: Integration & Infrastructure
 
 ## License
 
