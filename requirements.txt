@@ -15,7 +15,9 @@ langchain-text-splitters==0.0.1
 chromadb==0.4.18
 sentence-transformers==2.2.2
 transformers==4.35.0
-torch==2.1.0
+
+# IMPORTANT: Torch (CPU-friendly version)
+torch==2.1.0 --index-url https://download.pytorch.org/whl/cpu
 
 # === NLP & Machine Learning ===
 nltk==3.8.1
