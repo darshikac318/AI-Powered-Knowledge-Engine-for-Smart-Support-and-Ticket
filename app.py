@@ -4,6 +4,19 @@ import os
 from datetime import datetime
 import random
 
+@st.cache_resource
+def load_model():
+    from sentence_transformers import SentenceTransformer
+    return SentenceTransformer('all-MiniLM-L6-v2')
+
+@st.cache_resource
+def load_chromadb():
+    import chromadb
+    return chromadb.PersistentClient(path="data/processed/chroma")
+
+model = load_model()
+chroma_client = load_chromadb()
+
 sys.path.append('src')
 
 from database import Database
