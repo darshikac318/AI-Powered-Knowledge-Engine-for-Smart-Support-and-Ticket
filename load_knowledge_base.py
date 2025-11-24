@@ -3,6 +3,9 @@ import os
 import warnings
 warnings.filterwarnings('ignore')
 
+if not os.path.exists("data/processed/chroma"):
+    os.makedirs("data/processed/chroma", exist_ok=True)
+
 sys.path.append('src')
 
 from embedding_generator import EmbeddingGenerator

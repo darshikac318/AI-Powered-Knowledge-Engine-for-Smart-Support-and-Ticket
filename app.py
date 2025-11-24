@@ -4,21 +4,7 @@ import os
 from datetime import datetime
 import random
 
-@st.cache_resource
-def load_model():
-    from sentence_transformers import SentenceTransformer
-    return SentenceTransformer('all-MiniLM-L6-v2')
-
-@st.cache_resource
-def load_chromadb():
-    import chromadb
-    return chromadb.PersistentClient(path="data/processed/chroma")
-
-model = load_model()
-chroma_client = load_chromadb()
-
 sys.path.append('src')
-
 from database import Database
 
 st.set_page_config(
@@ -27,6 +13,26 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed"
 )
+
+@st.cache_resource
+def load_sentence_transformer():
+    from sentence_transformers import SentenceTransformer
+    return SentenceTransformer('all-MiniLM-L6-v2')
+
+@st.cache_resource
+def load_chromadb():
+    import chromadb
+    from chromadb.config import Settings
+    
+    client = chromadb.PersistentClient(
+        path="data/processed/chroma",
+        settings=Settings(anonymized_telemetry=False)
+    )
+    return client
+
+model = load_sentence_transformer()
+chroma_client = load_chromadb()
+
 
 def load_css():
     st.markdown("""
