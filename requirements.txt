@@ -1,7 +1,7 @@
 streamlit==1.28.0
 
 # Install torch FIRST (critical!)
-torch==2.1.0
+torch>=2.5.0
 torchvision==0.16.0
 torchaudio==2.1.0
 
