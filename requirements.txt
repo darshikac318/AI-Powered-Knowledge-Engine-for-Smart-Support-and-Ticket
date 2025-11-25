@@ -6,7 +6,8 @@ chromadb
 nltk
 PyPDF2
 pdfplumber
-pymupdf-binary
+PyMuPDF
+fitz
 pandas
 numpy
 matplotlib
