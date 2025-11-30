@@ -176,11 +176,11 @@ def user_interface():
                 ticket_data = {
                     'ticket_id': ticket_id,
                     'customer_name': customer_name,
+                    'customer_username': st.session_state.username, 
                     'order_id': order_id,
                     'query_type': query_type,
                     'query_text': query_text,
-                    'status': 'Open',
-                    'created_at': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    'status': 'Open'
                 }
                 db.create_ticket(ticket_data)
                 st.success(f"Query submitted! Ticket ID: {ticket_id}")
@@ -190,11 +190,11 @@ def user_interface():
     
     with tab2:
         st.markdown("### Support Chat")
+        user_tickets = db.get_tickets(username=st.session_state.username)
+        active_tickets = [t for t in user_tickets if t['status'] != 'Resolved']
         
-        user_tickets = [t for t in db.get_tickets() if t['customer_name'] == st.session_state.username]
-        
-        if user_tickets:
-            ticket_options = [f"{t['ticket_id']} - {t['query_type']}" for t in user_tickets]
+        if active_tickets:
+            ticket_options = [f"{t['ticket_id']} - {t['query_type']}" for t in active_tickets]
             selected = st.selectbox("Select Your Ticket", ticket_options)
             
             if selected:
@@ -223,12 +223,13 @@ def user_interface():
                         db.add_chat_message(ticket_id, "User", user_msg)
                         st.rerun()
         else:
-            st.info("No tickets found. Please raise a query first.")
+            st.info("No active tickets. Resolved tickets are automatically closed.")
+            st.caption("💡 Tip: Create a new ticket if you need further assistance.")
     
     with tab3:
         st.markdown("### My Tickets")
         
-        my_tickets = [t for t in db.get_tickets() if t['customer_name'] == st.session_state.username]
+        my_tickets = db.get_tickets(username=st.session_state.username)
         
         if my_tickets:
             for ticket in my_tickets:
@@ -535,9 +536,16 @@ def manager_interface():
             
             for feedback in kb_feedbacks:
                 helpfulness_scores[feedback['kb_helpfulness']] += 1
-            
             st.markdown("### KB Helpfulness Summary")
+
+            import pandas as pd
             
+            chart_data = pd.DataFrame({
+                'Rating': list(helpfulness_scores.keys()),
+                'Count': list(helpfulness_scores.values())
+            })
+            st.bar_chart(chart_data.set_index('Rating'))
+
             col1, col2, col3, col4, col5 = st.columns(5)
             with col1:
                 st.metric("Very Poor", helpfulness_scores["Very Poor"])
@@ -555,6 +563,17 @@ def manager_interface():
             satisfaction_rate = (good_feedback / total_feedback * 100) if total_feedback > 0 else 0
             
             st.markdown(f"**Overall KB Satisfaction Rate:** {satisfaction_rate:.1f}%")
+
+            st.markdown("### Rating Distribution")
+            pie_data = pd.DataFrame({
+                'Rating': [k for k, v in helpfulness_scores.items() if v > 0],
+                'Count': [v for k, v in helpfulness_scores.items() if v > 0]
+            })
+            st.write(pie_data)
+
+            st.markdown("### Overall Satisfaction")
+            st.progress(satisfaction_rate / 100)
+            st.write(f"{satisfaction_rate:.1f}% Positive Feedback")
             
             st.markdown("---")
             st.markdown("### Detailed Agent Feedback")
@@ -571,8 +590,8 @@ def manager_interface():
                     if feedback['kb_feedback'] and feedback['kb_feedback'] != "No additional comments":
                         st.markdown("**Agent's Improvement Suggestions:**")
                         st.warning(feedback['kb_feedback'])
-                    else:
-                        st.info("No KB feedback received yet. Feedback will appear here after agents resolve tickets.")
+        else:
+            st.info("No KB feedback received yet. Feedback will appear here after agents resolve tickets.")
 
 if not st.session_state.logged_in:
     login_page()
