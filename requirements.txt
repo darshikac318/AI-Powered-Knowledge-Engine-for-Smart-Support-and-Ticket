@@ -1,8 +1,9 @@
 streamlit
 torch
-sentence-transformers
-transformers
-chromadb
+sentence-transformers==3.0.1
+transformers==4.40.0 
+chromadb==0.5.23
+protobuf==4.25.3
 nltk
 PyPDF2
 pdfplumber
